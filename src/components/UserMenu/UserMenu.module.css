@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.username {
+display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.userIcon{
+background-color: #85AA9F;
+border-radius: 30px;
+width: 48px;
+height: 48px;
+}
+.btnLogout{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: inherit;
+  border: none;
+  padding: 12px 0px ;
+
+  
+}

@@ -1,0 +1,28 @@
+.linksContainer {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: #121417;
+  font-family: "MacPaw Fixel Display";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+}
+.link {
+  padding: 12px 20px;
+  border-radius: 15px;
+  background-color: inherit;} 
+
+.isActive {
+  border-radius: 15px;
+  background-color: #85AA9F;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  color: #FCFCFC;
+
+
+}

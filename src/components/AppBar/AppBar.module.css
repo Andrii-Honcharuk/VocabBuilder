@@ -1,0 +1,26 @@
+.logoContainer{
+    display: flex;
+    align-items: center;
+    /* gap: 16px; */
+
+}
+.linkLogo {
+   display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.logoText{
+    color: #121417;
+        font-family: "MacPaw Fixel Display";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+        /* line-height: 1.4545; */
+
+}
+.appBarContainer {
+    max-width: 100hv;
+    padding: 20px 100px ;
+    display: flex;
+    justify-content: space-between;
+}

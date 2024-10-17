@@ -1,0 +1,114 @@
+.registerName {
+color: var(--black, #121417);
+    font-family: "MacPaw Fixel Display";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+}
+
+.registerInfo {
+    margin-top: 20px;
+    color: rgba(18, 20, 23, 0.80);
+    font-family: "MacPaw Fixel Display";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.form {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.registerContainer {
+    max-width: 400px;
+    /* margin: 0 auto; */
+    padding: 20px;
+    background-color: #f5f7f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.inputContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+} 
+.inputContainer  input {
+    border-radius: 15px;
+    border: 1px solid rgba(18, 20, 23, 0.10);
+    padding: 0 18px;
+    width: 100%;
+    height: 64px;
+ }
+
+ .inputContainer label {
+    color: #121417;
+    font-family: "MacPaw Fixel Display";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: inherit;
+    padding: 5px 10px;
+    pointer-events: none;
+    position: absolute;
+    transition: all 200ms;
+    top: 18px;
+    left: 20px;
+    
+}
+.inputContainer input:focus + label,
+.inputContainer input:not(:placeholder-shown) + label,
+.inputContainer input:not(:placeholder-shown)
+{
+    top: -10px;
+    left: 10px;
+    font-size: 11px;
+    background-color: #BFE2FF;
+    padding: 2px 10px;
+    border-radius: 15px;
+}
+.inputContainer input:hover,
+.inputContainer input:focus-visible {
+    
+    border: 1px solid #85AA9F;
+    outline: #85AA9F;
+}
+.inputContainer button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn {
+    color: #FCFCFC;
+    font-family: "MacPaw Fixel Display";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5;
+    
+    border-radius: 30px;
+    background-color: #A5C0B8;
+    padding: 16px 16px;
+    justify-content: center;
+    align-items: center;
+    /* outline: #A5C0B8; */
+    border: none;
+}
+.btn:hover,
+.btn:focus {
+    background: #85AA9F;
+}
