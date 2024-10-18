@@ -2,13 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import css from "./RegistrationForm.module.css";
+import css from "./LoginForm.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { registerNewUser } from "../../redux/auth/operations";
+import { loginUser } from "../../redux/auth/operations";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
   email: Yup.string()
     .required("Email is required")
     .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Invalid email format"),
@@ -20,14 +19,14 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export default function RegistrationForm() {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   // const [passwordValue, setPasswordValue] = useState("");
 
   const {
-    register, // Реєстрація інпутів
+    register: login, // Реєстрація інпутів
     handleSubmit,
     formState: { errors },
     watch,
@@ -47,33 +46,17 @@ export default function RegistrationForm() {
   const style = notEmpty(passValue); //для стилів при автозаповненні
 
   const onSubmit = (data) => {
-    console.log("data", data);
-    dispatch(registerNewUser(data));
+    dispatch(loginUser(data));
+    console.log(data);
   };
 
   return (
     <div className={css.registerContainer}>
-      <h1 className={css.registerName}>Register</h1>
+      <h1 className={css.registerName}>Login</h1>
       <p className={css.registerInfo}>
-        To start using our services, please fill out the registration form
-        below. All fields are mandatory:
+        Please enter your login details to continue using our service:
       </p>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={css.inputContainer}>
-          <input
-            className={css.formInput}
-            type="text"
-            id="name"
-            name="name"
-            placeholder=" "
-            {...register("name")} // Реєстрація поля name
-          />
-          <label htmlFor="name" className={style}>
-            Name
-          </label>
-          {errors.name && <p>{errors.name.message}</p>}
-        </div>
-
         <div className={css.inputContainer}>
           <input
             className={css.formInput}
@@ -81,7 +64,7 @@ export default function RegistrationForm() {
             id="email"
             name="email"
             placeholder=" "
-            {...register("email")} // Реєстрація поля email
+            {...login("email")} // Реєстрація поля email
           />
           <label htmlFor="email" className={style}>
             E-mail
@@ -96,7 +79,7 @@ export default function RegistrationForm() {
             id="password"
             name="password"
             placeholder=" "
-            {...register("password")} // Реєстрація поля password
+            {...login("password")} // Реєстрація поля password
           />
           <label htmlFor="password" className={style}>
             Password
@@ -114,12 +97,12 @@ export default function RegistrationForm() {
         </div>
 
         <button className={css.btn} type="submit">
-          Register
+          Login
         </button>
       </form>
 
-      <Link to="/login" className={css.textLogin}>
-        Login
+      <Link to="/register" className={css.textRegister}>
+        Register
       </Link>
     </div>
   );

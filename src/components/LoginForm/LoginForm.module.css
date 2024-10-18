@@ -28,7 +28,7 @@ color: var(--black, #121417);
 .registerContainer {
     max-width: 628px;
     /* margin: 0 auto; */
-    padding: 64px 48px; 
+    padding: 64px 48px;
     border-radius: 30px;
     background-color: rgba(133, 170, 159, 0.10);
 }
@@ -72,10 +72,11 @@ color: var(--black, #121417);
     padding: 6px 12px;
     border-radius: 15px;
     line-height: 1;
-}   
+}
 
-.formInput:focus+.formLabel,
-.formInput:not(:placeholder-shown)+.formLabel {
+.formInput:focus + .formLabel,
+.formInput:not(:placeholder-shown) + .formLabel
+{
     color: #FCFCFC;
     top: -10px;
     left: 10px;
@@ -125,7 +126,7 @@ color: var(--black, #121417);
     background: #85AA9F;
 }
 
-.textLogin {
+.textRegister {
     display: block;
     color: rgba(18, 20, 23, 0.50);
     font-family: "MacPaw Fixel Display";
@@ -133,7 +134,7 @@ color: var(--black, #121417);
     font-style: normal;
     font-weight: 700;
     line-height: 24px;
-        /* 150% */
+    /* 150% */
     text-decoration-line: underline;
     text-align: center;
     margin-left: auto;

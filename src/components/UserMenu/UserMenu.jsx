@@ -1,18 +1,16 @@
-// UserMenu.jsx;
-
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import css from "./UserMenu.module.css";
-// import { selectUser } from "../../redux/auth/selectors";
+import { selectUser } from "../../redux/auth/selectors";
 // import { logOut } from "../../redux/auth/operations";
 // import userIcon from "../../../public\icons\usericon.svg";
 export default function UserMenu() {
   // const dispatch = useDispatch()
-  // const user = useSelector(selectUser) || { UserName: { name: Username } };
+  const user = useSelector(selectUser);
 
   return (
     <div className={css.wrapper}>
       <div className={css.username}>
-        Username
+        {user.name}
         <div className={css.userIcon}>
           <img
             src="../../../public/icons/usericon.svg"
