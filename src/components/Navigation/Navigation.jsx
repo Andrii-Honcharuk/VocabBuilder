@@ -6,7 +6,7 @@ import css from "./Navigation.module.css";
 // import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const makeActiveClass = ({ isActive }) => {
-  console.log(isActive);
+  // console.log(isActive);
   return `${isActive && css.isActive} ${css.link}`;
 };
 
