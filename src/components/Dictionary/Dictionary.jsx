@@ -3,18 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllWords } from "../../redux/words/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { selectWords } from "../../redux/words/selectors";
+import WordsPagination from "../WordsPagination/WordsPagination";
 
 export default function Dictionary() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const visibleWords = useSelector(selectWords);
 
+  const totalPages = visibleWords.totalPages;
+  // console.log("totalPages", totalPages);
+  const currentPage = visibleWords.page;
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchAllWords());
+      dispatch(fetchAllWords({ page: 5, limit: 15 }));
     }
   }, [dispatch, isLoggedIn]);
-  console.log("visibleWords", visibleWords);
+  // console.log("visibleWords", visibleWords);
 
   return (
     <div>
@@ -27,6 +31,7 @@ export default function Dictionary() {
             </li>
           ))}
       </div>
+      <WordsPagination totalPages={totalPages} currentPage={currentPage} />
     </div>
   );
 }

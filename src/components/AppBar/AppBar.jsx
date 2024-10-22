@@ -2,8 +2,11 @@ import Navigation from "../Navigation/Navigation";
 import logo from "../../../public/icons/logo.svg";
 import UserMenu from "../UserMenu/UserMenu";
 import css from "./AppBar.module.css";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 export function AppBar() {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <header>
       <div className={css.appBarContainer}>
@@ -13,8 +16,8 @@ export function AppBar() {
             <p className={css.logoText}>VocabBuilder</p>
           </a>
         </div>
-        <Navigation />
-        <UserMenu />
+        {isLoggedIn && <Navigation />}
+        {isLoggedIn && <UserMenu />}
       </div>
     </header>
   );

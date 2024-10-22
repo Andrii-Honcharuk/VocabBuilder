@@ -6,6 +6,9 @@ axios.defaults.baseURL = "https://vocab-builder-backend.p.goit.global/api";
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
+const clearAuthHeader = () => {
+  axios.defaults.headers.common["Authorization"] = "";
+};
 
 // POST Register signup
 
@@ -41,7 +44,21 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-//POST LogOut
+//POST LogOut signOut
+
+export const logOutUser = createAsyncThunk("auth/logout", 
+  async (_, thunkAPI) => {
+  try {
+    const response = await axios.post("/users/signout");
+
+    clearAuthHeader();
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+//GET Refresh
 
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
@@ -57,5 +74,11 @@ export const refreshUser = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  },{
+    condition: (_, { getState }) => {
+      const reduxState = getState();
+      const savedToken = reduxState.auth.token;
+      return savedToken !== null;
+    },
   }
 );
