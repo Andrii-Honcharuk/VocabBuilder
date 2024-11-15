@@ -1,23 +1,31 @@
-// import { useSelector } from "react-redux";
-// import { setPage } from "../../redux/words/slice";
-// import { fetchAllWords } from "../../redux/words/operations";
-// import { selectWords } from "../../redux/words/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllWords } from "../../redux/words/operations";
+import { setPage } from "../../redux/words/slice";
 
-export default function WordsPagination({ totalPages, currentPage }) {
-  //   const dispatch = useDispatch();
-  //   const totalPages = useSelector(selectWords);
-  //   const currentPage = useSelector(selectWords);
-  // console.log("totalPages", totalPages);
-  // console.log("currentPage", currentPage);
+export default function WordsPagination() {
+  const dispatch = useDispatch();
+  const { totalPages, currentPage } = useSelector((state) => state.words);
+
+  console.log("totalPages", totalPages);
+  const handlePageChange = (page) => {
+    dispatch(setPage(page));
+    dispatch(fetchAllWords({ page }));
+  };
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div>
       <button>{"<<"}</button>
       <ul>
-        {[...Array(totalPages)].map((_, index) => {
+        {pages.map((page) => {
           return (
-            <li key={index}>
-              <button disabled={index + 1 === currentPage}>{index + 1}</button>
+            <li key={page}>
+              <button
+                onClick={() => handlePageChange(page)}
+                disabled={page === currentPage}
+              >
+                {page}
+              </button>
             </li>
           );
         })}

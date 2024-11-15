@@ -10,9 +10,12 @@ import { useEffect } from "react";
 import { refreshUser } from "../../redux/auth/operations";
 import Dictionary from "../Dictionary/Dictionary";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
-// import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import Recommend from "../Recommend/Recommend";
+import { RestrictedRoute } from "../RestrictredRoute";
+import { PrivateRoute } from "../PrivateRoute";
+import Layout from "../Layout/Layout";
 
-// import './App.css'
+// import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 export function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -27,36 +30,58 @@ export function App() {
     <b>Refreshing loading</b>
   ) : (
     <>
-      <AppBar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <Home>
-                <LoginForm />
-              </Home>
-            </div>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <Home>
-              <LoginForm />
-            </Home>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <Home>
-              <RegistrationForm />
-            </Home>
-          }
-        />
-        <Route path="/dictionary" element={<Dictionary />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RestrictedRoute
+                component={
+                  <Home>
+                    <LoginForm />
+                  </Home>
+                }
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                component={
+                  <div>
+                    <Home>
+                      <LoginForm />
+                    </Home>
+                  </div>
+                }
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={
+                  <div>
+                    <Home>
+                      <RegistrationForm />
+                    </Home>
+                  </div>
+                }
+              />
+            }
+          />
+          <Route
+            path="/dictionary"
+            element={<PrivateRoute component={<Dictionary />} />}
+          />
+          <Route
+            path="/recommend"
+            element={<PrivateRoute component={<Recommend />} />}
+          />
+        </Routes>
+      </Layout>
     </>
   );
 }

@@ -4,11 +4,20 @@ import { fetchAllWords } from "./operations";
 const wordSlice = createSlice({
   name: "words",
   initialState: {
-    items: [],
+    words: [],
+    currentPage: 1,
+    totalPages: 1,
+    limit: 10,
+    keyword: "",
+    category: "",
     loading: false,
     error: null,
   },
-
+  reducers: {
+    setPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchAllWords.pending, (state) => {
@@ -18,7 +27,12 @@ const wordSlice = createSlice({
       .addCase(fetchAllWords.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.words = action.payload;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.page;
+        state.limit = action.payload.limit;
+        state.keyword = action.payload.keyword;
+        state.category = action.payload.category;
         // console.dir("etchAllWords.fulfilled", state);
       })
       .addCase(fetchAllWords.rejected, (state) => {
@@ -26,5 +40,7 @@ const wordSlice = createSlice({
         state.loading = false;
       }),
 });
+
+export const { setPage } = wordSlice.actions;
 
 export default wordSlice.reducer;
